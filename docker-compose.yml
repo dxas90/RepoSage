@@ -1,0 +1,36 @@
+services:
+  qdrant:
+    image: qdrant/qdrant:v1
+    container_name: qdrant
+    restart: unless-stopped
+    ports:
+      - "6333:6333"
+    volumes:
+      - ./qdrant_storage:/qdrant/storage
+
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: ollama
+  #   restart: unless-stopped
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ~/.ollama:/root/.ollama
+  #   environment:
+  #     - OLLAMA_KEEP_ALIVE=24h
+
+  # jupyter:
+  #   image: quay.io/jupyter/datascience-notebook:lab-4.4.10
+  #   container_name: rag-notebook
+  #   restart: unless-stopped
+  #   working_dir: /workspace
+  #   volumes:
+  #     - ./workspace:/workspace
+  #   ports:
+  #     - "8888:8888"
+  #   command: >
+  #     bash -c "pip install jupyter requests qdrant-client llama-index llama-index-embeddings-huggingface llama-index-vector-stores-qdrant llama-index-llms-ollama watchdog &&
+  #     jupyter lab --ip=0.0.0.0 --no-browser --allow-root"
+  #   depends_on:
+  #     - qdrant
+  #     - ollama

@@ -1,0 +1,4 @@
+.ipynb_checkpoints
+qdrant_storage
+.venv
+__pycache__
